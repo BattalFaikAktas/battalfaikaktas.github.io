@@ -17,21 +17,167 @@
     header {
       position: sticky;
       top: 0;
-      background: var(--bg);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg) 90%, rgba(12,15,20,0.8) 100%);
       padding: 16px 24px;
       z-index: 10;
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(4px);
     }
-    h1 { margin:0 0 4px; font-size:22px }
-    .sub { color:var(--muted); font-size:14px }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 1024px) {
+      .header-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-group {
+        flex-wrap: wrap;
+      }
+    }
+    .header-left {
+      flex: 0 0 auto;
+    }
+    h1 { margin:0 0 2px; font-size:22px }
+    .sub { color:var(--muted); font-size:13px }
+    .filter-group {
+      display: flex;
+      gap: 24px;
+      align-items: flex-end;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .filter-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .range-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+    }
+    .range-input {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent) var(--value), var(--border) var(--value), var(--border) 100%);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(124, 196, 255, 0.4);
+      border: 2px solid var(--bg);
+      transition: all 0.2s ease;
+    }
+    .range-input::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 12px rgba(124, 196, 255, 0.6);
+    }
+    .range-input::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(124, 196, 255, 0.4);
+      border: 2px solid var(--bg);
+      transition: all 0.2s ease;
+    }
+    .range-input::-moz-range-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 12px rgba(124, 196, 255, 0.6);
+    }
+    .range-value {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 50px;
+      text-align: right;
+    }
+    .filter-item input[type="text"], .filter-item select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(18,24,38,0.8), rgba(18,24,38,0.6)) padding-box,
+                  linear-gradient(135deg, #3a5a7f, #243042) border-box;
+      color: var(--fg);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 140px;
+      cursor: text;
+    }
+    .filter-item select {
+      cursor: pointer;
+      padding: 8px 10px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237cc4ff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      padding-right: 28px;
+    }
+    .filter-item input[type="text"]:hover, .filter-item select:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(124, 196, 255, 0.1);
+    }
+    .filter-item input[type="text"]:focus, .filter-item select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(124, 196, 255, 0.2);
+      background: linear-gradient(135deg, rgba(18,24,38,0.9), rgba(18,24,38,0.7)) padding-box,
+                  linear-gradient(135deg, #7cc4ff, #5a9fd4) border-box;
+    }
     .search-box {
-      margin-top: 10px;
+      width: 100%;
+      margin-top: 8px;
     }
     .search-box input {
-      width:100%; padding:8px 12px;
+      width:100%; padding:11px 14px;
       border-radius:8px; border:1px solid var(--border);
-      background:var(--card); color:var(--fg);
+      background: linear-gradient(135deg, rgba(18,24,38,0.8), rgba(18,24,38,0.6)) padding-box,
+                  linear-gradient(135deg, #2b4661, #1b2735) border-box;
+      color: var(--fg);
       font-size:14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .search-box input::placeholder {
+      color: var(--muted);
+    }
+    .search-box input:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(124, 196, 255, 0.1);
+    }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(124, 196, 255, 0.2);
+      background: linear-gradient(135deg, rgba(18,24,38,0.9), rgba(18,24,38,0.7)) padding-box,
+                  linear-gradient(135deg, #3d5a7f, #2a3d52) border-box;
     }
     main {
       padding: 24px;
@@ -108,15 +254,70 @@
     .card-link {text-decoration: none; color: inherit; display: block;}
     .card-link:hover .card {transform: scale(1.02); transition: 0.2s;}
 
-    footer { color:var(--muted); margin-top:18px; font-size:12px; padding:0 24px }
+    footer {
+      color: var(--muted);
+      margin-top: 32px;
+      font-size: 12px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      background: rgba(18,24,38,0.3);
+    }
+    .no-results {
+      grid-column: 1 / -1;
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .clear-filters {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: rgba(124, 196, 255, 0.1);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .clear-filters:hover {
+      background: rgba(124, 196, 255, 0.2);
+      box-shadow: 0 0 12px rgba(124, 196, 255, 0.2);
+    }
   </style>
   </head>
   <body>
     <header>
-      <h1>Xbox Game Deals (TR)</h1>
-      <div class="sub">1647 Games — Created Date: 07.12.2025 01:26 +0000</div>
+      <div class="header-top">
+        <div class="header-left">
+          <h1>Xbox Game Deals (TR)</h1>
+          <div class="sub">1647 Games — Created Date: 08.12.2025 01:19 +0000</div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-item">
+            <label class="filter-label">Release Year</label>
+            <div class="range-container">
+              <input type="range" id="yearRangeMin" class="range-input" min="2005" max="2025" value="2005">
+              <span class="range-value"><span id="yearMinDisplay">2005</span>-<span id="yearMaxDisplay">2025</span></span>
+              <input type="range" id="yearRangeMax" class="range-input" min="2005" max="2025" value="2025">
+            </div>
+          </div>
+          <div class="filter-item">
+            <label class="filter-label">Min Discount %</label>
+            <div class="range-container">
+              <input type="range" id="discountRange" class="range-input" min="0" max="100" value="0">
+              <span class="range-value" id="discountDisplay">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search...">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <input type="text" id="searchInput" placeholder="Search by game title..." style="flex: 1;">
+          <button class="clear-filters" id="clearBtn">Clear Filters</button>
+        </div>
       </div>
     </header>
     <main>
@@ -6350,42 +6551,6 @@
         </div>
       </article>
       
-      <a href="http://www.xbox.com/tr-TR/games/store/darkland-iii/9P6VQ73LDDWV/0010" target="_blank" class="card-link">
-      <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.62995.14612378644069363.6d3c94ae-ac27-456b-b42f-68b8d99c840e.06bb9493-5b18-4c88-ae48-057d7b236430" alt="">
-        <div class="meta">
-          <h3 class="title">DARKLAND III</h3>
-          <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺2,75</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺8,50</span></div>
-            <div><span class="lbl">Discount : </span><span class="val disc">%68</span></div>
-          </div>
-          <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2025.04.21</span></div>
-            <div></div>
-            <div><span class="lbl">Offer Ends :</span> <span class="val">12.07.2025</span></div>
-          </div>
-        </div>
-      </article>
-      
-      <a href="http://www.xbox.com/tr-TR/games/store/super-pixel-kid-adventure/9NB77RRSSPVF/0010" target="_blank" class="card-link">
-      <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.30001.13522836438337386.7e424129-13a2-4ce7-891b-478f54ff98ad.dc21df32-98e3-4d0f-9459-f8032926b9a5" alt="">
-        <div class="meta">
-          <h3 class="title">Super Pixel Kid Adventure</h3>
-          <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺2,75</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺8,50</span></div>
-            <div><span class="lbl">Discount : </span><span class="val disc">%68</span></div>
-          </div>
-          <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2025.03.10</span></div>
-            <div></div>
-            <div><span class="lbl">Offer Ends :</span> <span class="val">12.07.2025</span></div>
-          </div>
-        </div>
-      </article>
-      
       <a href="http://www.xbox.com/tr-TR/games/store/the-mildew-children/9NL6F5300JS4/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.54396.13713150471096339.d1d49364-de64-4ce6-a6ff-803678304bca.a84feac6-d20b-483c-9b95-c39febe9e3e2" alt="">
@@ -9208,24 +9373,6 @@
             <div><span class="lbl">Release Date :</span> <span class="val">2024.01.14</span></div>
             <div></div>
             <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
-          </div>
-        </div>
-      </article>
-      
-      <a href="http://www.xbox.com/tr-TR/games/store/wargroove/9NRPTTJ94PCK/0010" target="_blank" class="card-link">
-      <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.19564.14378604131770680.b6b5a8ca-e766-4938-b45e-8543e36147b7.888ecd5d-b86b-4897-8594-8a68fc1dd6bb" alt="">
-        <div class="meta">
-          <h3 class="title">Wargroove</h3>
-          <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺76,00</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺190,00</span></div>
-            <div><span class="lbl">Discount : </span><span class="val disc">%60</span></div>
-          </div>
-          <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2019.02.01</span></div>
-            <div></div>
-            <div><span class="lbl">Offer Ends :</span> <span class="val">12.11.2025</span></div>
           </div>
         </div>
       </article>
@@ -16718,6 +16865,24 @@
         </div>
       </article>
       
+      <a href="http://www.xbox.com/tr-TR/games/store/ratyboy-adventures/9PG0HF0DC6KG/0010" target="_blank" class="card-link">
+      <article class="card">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.43434.14194771345538731.502cdde3-9f64-452f-aed4-6fb572d8ff45.4804d155-ca36-4915-bed2-1e2f9010a1d2" alt="">
+        <div class="meta">
+          <h3 class="title">Ratyboy Adventures</h3>
+          <div class="prices">
+            <div><span class="lbl">Now: </span><span class="val price">₺7,00</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺14,00</span></div>
+            <div><span class="lbl">Discount : </span><span class="val disc">%50</span></div>
+          </div>
+          <div class="dates">
+            <div><span class="lbl">Release Date :</span> <span class="val">2023.05.17</span></div>
+            <div></div>
+            <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
+          </div>
+        </div>
+      </article>
+      
       <a href="http://www.xbox.com/tr-TR/games/store/truck-driver---uk-paint-jobs-dlc/9PDV84KF5GHF/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.17449.14146869107709800.de19a955-618f-45da-9004-306a5b5eda93.4567ba69-09bd-437e-ab2b-d82ad6a3a523" alt="">
@@ -19526,6 +19691,24 @@
         </div>
       </article>
       
+      <a href="http://www.xbox.com/tr-TR/games/store/kulebra-and-the-souls-of-limbo/9PFT2MJKJHWX/0010" target="_blank" class="card-link">
+      <article class="card">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.32740.14193966455764021.2770c71f-6051-45a9-b765-9028dd955314.755bb6db-d4ad-48af-a851-3312ae9fc761" alt="">
+        <div class="meta">
+          <h3 class="title">Kulebra and the Souls of Limbo</h3>
+          <div class="prices">
+            <div><span class="lbl">Now: </span><span class="val price">₺229,50</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺382,50</span></div>
+            <div><span class="lbl">Discount : </span><span class="val disc">%40</span></div>
+          </div>
+          <div class="dates">
+            <div><span class="lbl">Release Date :</span> <span class="val">2025.05.16</span></div>
+            <div></div>
+            <div><span class="lbl">Offer Ends :</span> <span class="val">12.11.2025</span></div>
+          </div>
+        </div>
+      </article>
+      
       <a href="http://www.xbox.com/tr-TR/games/store/vigor---cataclysm-commander-pack/9ND9KKMQ4R94/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.12250.13547639852475625.8d55e3b7-45d2-4a78-ace3-2a1297166d9f.6a81ac63-d209-4d7b-b6d1-2a8a9ac198b9" alt="">
@@ -21074,24 +21257,6 @@
         </div>
       </article>
       
-      <a href="http://www.xbox.com/tr-TR/games/store/snowrunner---season-11:-light-and-cameras-(windows)/9NW1WT9BJQL1/0010" target="_blank" class="card-link">
-      <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.9403.14453722404585810.1339a62a-fd45-4ab5-92a5-115b5b7dc143.bae49e16-5930-4921-9d7b-08ed46c036d8" alt="">
-        <div class="meta">
-          <h3 class="title">SnowRunner - Season 11: Light and Cameras (Windows)</h3>
-          <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺84,50</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺130,00</span></div>
-            <div><span class="lbl">Discount : </span><span class="val disc">%35</span></div>
-          </div>
-          <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2023.10.19</span></div>
-            <div></div>
-            <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
-          </div>
-        </div>
-      </article>
-      
       <a href="http://www.xbox.com/tr-TR/games/store/snowrunner---season-4:-new-frontiers-(windows-10)/9NWFQ69KXKFX/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.48590.14450335021327505.552149ec-7948-48b2-91d6-374437cd3641.10e50c4c-b1f2-447e-af13-18e525c1cb44" alt="">
@@ -21104,6 +21269,24 @@
           </div>
           <div class="dates">
             <div><span class="lbl">Release Date :</span> <span class="val">2021.05.18</span></div>
+            <div></div>
+            <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
+          </div>
+        </div>
+      </article>
+      
+      <a href="http://www.xbox.com/tr-TR/games/store/snowrunner---season-11:-light-and-cameras-(windows)/9NW1WT9BJQL1/0010" target="_blank" class="card-link">
+      <article class="card">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.9403.14453722404585810.1339a62a-fd45-4ab5-92a5-115b5b7dc143.bae49e16-5930-4921-9d7b-08ed46c036d8" alt="">
+        <div class="meta">
+          <h3 class="title">SnowRunner - Season 11: Light and Cameras (Windows)</h3>
+          <div class="prices">
+            <div><span class="lbl">Now: </span><span class="val price">₺84,50</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺130,00</span></div>
+            <div><span class="lbl">Discount : </span><span class="val disc">%35</span></div>
+          </div>
+          <div class="dates">
+            <div><span class="lbl">Release Date :</span> <span class="val">2023.10.19</span></div>
             <div></div>
             <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
           </div>
@@ -28580,18 +28763,18 @@
         </div>
       </article>
       
-      <a href="http://www.xbox.com/tr-TR/games/store/world-war-z---pre-apocalypse-character-skins-pack/9NPP53BLB2DM/0010" target="_blank" class="card-link">
+      <a href="http://www.xbox.com/tr-TR/games/store/snowrunner---season-14:-reap-&amp;-sow-(windows)/9PPK1DTNZL52/0010" target="_blank" class="card-link">
       <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.59148.13785172602237236.9f400d62-fe12-4e91-8764-2059ff83e630.bf494a7e-a967-458f-af9b-be2e64fcc3e3" alt="">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.17799.14327995848711551.b4844a0b-06ec-4318-94bb-95218d95c034.ce3aa26c-354c-4cc6-938b-c1050e1f0da0" alt="">
         <div class="meta">
-          <h3 class="title">World War Z - Pre-Apocalypse Character Skins Pack</h3>
+          <h3 class="title">SnowRunner - Season 14: Reap &amp; Sow (Windows)</h3>
           <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺11,20</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺14,00</span></div>
+            <div><span class="lbl">Now: </span><span class="val price">₺120,00</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺150,00</span></div>
             <div><span class="lbl">Discount : </span><span class="val disc">%20</span></div>
           </div>
           <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2023.12.05</span></div>
+            <div><span class="lbl">Release Date :</span> <span class="val">2024.09.26</span></div>
             <div></div>
             <div><span class="lbl">Offer Ends :</span> <span class="val">12.18.2025</span></div>
           </div>
@@ -29642,24 +29825,6 @@
         </div>
       </article>
       
-      <a href="http://www.xbox.com/tr-TR/games/store/fantasy-dash/9N0102B834ZM/0010" target="_blank" class="card-link">
-      <article class="card">
-        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.41183.13930478916829142.8e94b6e0-c43c-49e9-b395-29dfc4059f03.8942e5aa-c256-48a1-a57f-d8d9eaf27920" alt="">
-        <div class="meta">
-          <h3 class="title">Fantasy Dash</h3>
-          <div class="prices">
-            <div><span class="lbl">Now: </span><span class="val price">₺2,75</span></div>
-            <div><span class="lbl">Was :</span><span class="val strike">₺2,75</span></div>
-            <div><span class="lbl">Discount : </span><span class="val disc">%0</span></div>
-          </div>
-          <div class="dates">
-            <div><span class="lbl">Release Date :</span> <span class="val">2021.12.27</span></div>
-            <div></div>
-            <div><span class="lbl">Offer Ends :</span> <span class="val">12.09.2025</span></div>
-          </div>
-        </div>
-      </article>
-      
       <a href="http://www.xbox.com/tr-TR/games/store/psychonauts-2/9NBR2VXT87SJ/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.17302.13578175979543723.424401c3-5602-4e35-abfc-c00f9156296a.e6d1e593-0006-4b73-886e-dd37b6626198" alt="">
@@ -29732,6 +29897,24 @@
         </div>
       </article>
       
+      <a href="http://www.xbox.com/tr-TR/games/store/darkland-iii/9P6VQ73LDDWV/0010" target="_blank" class="card-link">
+      <article class="card">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.62995.14612378644069363.6d3c94ae-ac27-456b-b42f-68b8d99c840e.06bb9493-5b18-4c88-ae48-057d7b236430" alt="">
+        <div class="meta">
+          <h3 class="title">DARKLAND III</h3>
+          <div class="prices">
+            <div><span class="lbl">Now: </span><span class="val price">₺2,75</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺2,75</span></div>
+            <div><span class="lbl">Discount : </span><span class="val disc">%0</span></div>
+          </div>
+          <div class="dates">
+            <div><span class="lbl">Release Date :</span> <span class="val">2025.04.21</span></div>
+            <div></div>
+            <div><span class="lbl">Offer Ends :</span> <span class="val">12.09.2025</span></div>
+          </div>
+        </div>
+      </article>
+      
       <a href="http://www.xbox.com/tr-TR/games/store/forza-motorsport-deluxe-edition/9PN4DRJDLZT7/0010" target="_blank" class="card-link">
       <article class="card">
         <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.8495.14351182556820670.6ebc5ba2-47c4-4eaf-9672-c9ba92ad71f9.e94c47ff-89b2-46d2-848e-0b71e251ce05" alt="">
@@ -29768,21 +29951,141 @@
         </div>
       </article>
       
+      <a href="http://www.xbox.com/tr-TR/games/store/super-pixel-kid-adventure/9NB77RRSSPVF/0010" target="_blank" class="card-link">
+      <article class="card">
+        <img class="thumb" src="https://store-images.s-microsoft.com/image/apps.30001.13522836438337386.7e424129-13a2-4ce7-891b-478f54ff98ad.dc21df32-98e3-4d0f-9459-f8032926b9a5" alt="">
+        <div class="meta">
+          <h3 class="title">Super Pixel Kid Adventure</h3>
+          <div class="prices">
+            <div><span class="lbl">Now: </span><span class="val price">₺2,75</span></div>
+            <div><span class="lbl">Was :</span><span class="val strike">₺2,75</span></div>
+            <div><span class="lbl">Discount : </span><span class="val disc">%0</span></div>
+          </div>
+          <div class="dates">
+            <div><span class="lbl">Release Date :</span> <span class="val">2025.03.10</span></div>
+            <div></div>
+            <div><span class="lbl">Offer Ends :</span> <span class="val">12.09.2025</span></div>
+          </div>
+        </div>
+      </article>
+      
       </div>
     </main>
     <footer>Data compiled from the xbox.com dynamic channel.</footer>
 
     <script>
       const searchInput = document.getElementById('searchInput');
+      const yearRangeMin = document.getElementById('yearRangeMin');
+      const yearRangeMax = document.getElementById('yearRangeMax');
+      const discountRange = document.getElementById('discountRange');
+      const yearMinDisplay = document.getElementById('yearMinDisplay');
+      const yearMaxDisplay = document.getElementById('yearMaxDisplay');
+      const discountDisplay = document.getElementById('discountDisplay');
+      const clearBtn = document.getElementById('clearBtn');
+      const gameGrid = document.getElementById('gameGrid');
       const cards = document.querySelectorAll('.card-link');
-
-      searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        cards.forEach(card => {
+      
+      // Store game data for filtering
+      const gameData = [];
+      cards.forEach(card => {
+        const dateElements = card.querySelectorAll('.dates .val');
+        if (dateElements.length > 0) {
+          const releaseDate = dateElements[0].textContent.trim();
+          const year = parseInt(releaseDate.split('.')[0]);
+          const discountText = card.querySelector('.disc').textContent;
+          const discount = parseInt(discountText.replace(/%/g, '').trim()) || 0;
           const title = card.querySelector('.title').textContent.toLowerCase();
-          card.style.display = title.includes(query) ? '' : 'none';
-        });
+          
+          gameData.push({
+            card: card,
+            year: year,
+            discount: discount,
+            title: title
+          });
+        }
       });
+      
+      // Calculate actual min/max years from data - only filter out clearly invalid years
+      const validYears = gameData.map(g => g.year).filter(y => y >= 1900 && y <= new Date().getFullYear());
+      const minYear = validYears.length > 0 ? Math.min(...validYears) : 2000;
+      const maxYear = new Date().getFullYear();
+      yearRangeMin.min = minYear;
+      yearRangeMin.max = maxYear;
+      yearRangeMin.value = minYear;
+      yearRangeMax.min = minYear;
+      yearRangeMax.max = maxYear;
+      yearRangeMax.value = maxYear;
+      yearMinDisplay.textContent = minYear;
+      yearMaxDisplay.textContent = maxYear;
+      
+      function updateYearDisplay() {
+        yearMinDisplay.textContent = yearRangeMin.value;
+        yearMaxDisplay.textContent = yearRangeMax.value;
+        if (parseInt(yearRangeMin.value) > parseInt(yearRangeMax.value)) {
+          yearRangeMin.value = yearRangeMax.value;
+          yearMinDisplay.textContent = yearRangeMax.value;
+        }
+      }
+      
+      function updateDiscountDisplay() {
+        discountDisplay.textContent = discountRange.value + '%';
+      }
+      
+      function filterCards() {
+        const query = searchInput.value.toLowerCase();
+        const yearMin = parseInt(yearRangeMin.value);
+        const yearMax = parseInt(yearRangeMax.value);
+        const minDiscount = parseInt(discountRange.value) || 0;
+        
+        let visibleCount = 0;
+        gameData.forEach(game => {
+          const yearMatch = game.year >= yearMin && game.year <= yearMax;
+          const discountMatch = game.discount >= minDiscount;
+          const searchMatch = game.title.includes(query);
+          
+          const shouldShow = yearMatch && discountMatch && searchMatch;
+          game.card.style.display = shouldShow ? '' : 'none';
+          if (shouldShow) visibleCount++;
+        });
+        
+        let noResultsMsg = document.getElementById('noResultsMsg');
+        if (visibleCount === 0) {
+          if (!noResultsMsg) {
+            noResultsMsg = document.createElement('div');
+            noResultsMsg.id = 'noResultsMsg';
+            noResultsMsg.className = 'no-results';
+            noResultsMsg.textContent = '🎮 No games found. Try adjusting your filters!';
+            gameGrid.appendChild(noResultsMsg);
+          }
+        } else if (noResultsMsg) {
+          noResultsMsg.remove();
+        }
+      }
+      
+      function clearAllFilters() {
+        searchInput.value = '';
+        yearRangeMin.value = minYear;
+        yearRangeMax.value = maxYear;
+        discountRange.value = '0';
+        updateYearDisplay();
+        updateDiscountDisplay();
+        filterCards();
+      }
+      
+      searchInput.addEventListener('input', filterCards);
+      yearRangeMin.addEventListener('input', () => {
+        updateYearDisplay();
+        filterCards();
+      });
+      yearRangeMax.addEventListener('input', () => {
+        updateYearDisplay();
+        filterCards();
+      });
+      discountRange.addEventListener('input', () => {
+        updateDiscountDisplay();
+        filterCards();
+      });
+      clearBtn.addEventListener('click', clearAllFilters);
     </script>
   </body>
   </html>
